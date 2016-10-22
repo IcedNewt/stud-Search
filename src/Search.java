@@ -84,6 +84,74 @@ public int hash(int key)
 }
 
 
+private void addToHash(int value){
+    int index = hash(value);
+    while(!(H[index]== -1)){
+        index+=1;
+        System.out.println(value+"   "+index);
+        if(index>(hSize-1)){
+            index=0;
+        }
+    }
+
+    H[index] = value;
+}
+
+public void readIntoHash(String file){
+    try
+    {
+        /** Set up file for reading **/
+        FileReader reader = new FileReader(file);
+        Scanner in = new Scanner(reader);
+
+        /** Loop round reading in data **/
+        for (int i=0;i<size;i++)
+        {
+            /** Get net value **/
+            addToHash(in.nextInt());
+        }
+    }
+    catch (IOException e)
+    {
+        System.out.println("Error processing file " + file);
+    }
+}
+
+public int hashSearch(int key) {
+    int index = hash(key);
+
+    compHash+=1;
+    if (H[index] == -1){
+        return -1;
+    }
+
+    compHash+=1;
+    if(H[index] == key){
+        return index;
+    }
+    else{
+        int oldIndex;
+            if(index != 0){
+                oldIndex=index-1;}
+            else{
+                oldIndex = hSize-1;}
+
+        while((index!=oldIndex) &&(index!=(-1))){
+            index+=1;
+            if(index>(hSize-1)){
+                index=0;
+            }
+            compHash+=1;
+            if(H[index] == key){
+                return index;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
 /*****************************/
 /*** Display array of data ***/
 /*****************************/
