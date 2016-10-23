@@ -88,7 +88,6 @@ private void addToHash(int value){
     int index = hash(value);
     while(!(H[index]== -1)){
         index+=1;
-        System.out.println(value+"   "+index);
         if(index>(hSize-1)){
             index=0;
         }

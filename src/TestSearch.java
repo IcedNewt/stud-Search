@@ -17,33 +17,6 @@ public class TestSearch
        int[] test1Array = new int[10];
        int[] test2Array = new int[10];
 
-       /**Search S = new Search(100, 151);
-
-       S.readIntoHash("data1.txt");
-
-
-       S.readFileIn("data1.txt");
-    
-
-       S.displayData(20, "Data Array");
-       
-
-       S.displayHash(20);
-
-
-       System.out.println();
-       System.out.println("Sequential search key found at index: " + S.seqSearch(8));
-       System.out.println("Sequential search, number of comparisons are: " + S.compSeq);
-
-       System.out.println("Binary search key found at index: " + S.binSearch(8,0,100));
-       System.out.println("Binary search, number of comparisons are: " + S.compBin);
-
-       System.out.println("Hash search key found at index: " + S.hashSearch(490));
-       System.out.println("Binary search, number of comparisons are: " + S.compHash);
-
-       **/
-
-
        Search test1 = new Search(100, 151);
 
        test1.readIntoHash("data1.txt");
@@ -51,21 +24,45 @@ public class TestSearch
 
        populateSearchArray(test1Array,"search1.txt");
 
+       System.out.printf("\nTest 1");
+       test1.displayData(20, "Data Array");
+       test1.displayHash(20);
+       System.out.print("\n\n");
+
        for(int i=0;i<10;i++){
-           System.out.println("Sequential search for "+test1Array[i]+" found at index: " + test1.seqSearch(test1Array[i]));
-           System.out.println("Sequential search, number of comparisons are: " + test1.compSeq);
-
-           System.out.println("Binary search for "+test1Array[i]+" found at index: " + test1.binSearch(test1Array[i],0,99));
-           System.out.println("Binary search, number of comparisons are: " + test1.compBin);
-
-           System.out.println("Hash search for "+test1Array[i]+" found at index: " + test1.hashSearch(test1Array[i]));
-           System.out.println("Hash search, number of comparisons are: " + test1.compHash);
+           System.out.printf("Sequential search for %d found at index: %d. %d comparisons needed.%n",test1Array[i],test1.seqSearch(test1Array[i]),test1.compSeq);
+           System.out.printf("Binary search for %d found at index: %d. %d comparisons needed.%n",test1Array[i],test1.binSearch(test1Array[i],0,99),test1.compBin);
+           System.out.printf("Hash search for %d found at index: %d. %d comparisons needed.%n%n",test1Array[i],test1.hashSearch(test1Array[i]),test1.compHash);
 
        }
 
        System.out.println("Average comparisons for sequential search in this case is: " + (test1.compSeq /10));
        System.out.println("Average comparisons for binary search in this case is: " + (test1.compBin /10));
        System.out.println("Average comparisons for Hash search in this case is: " + (test1.compHash /10));
+
+
+       Search test2 = new Search(1000, 1499);
+
+       test2.readIntoHash("data2.txt");
+       test2.readFileIn("data2.txt");
+
+       populateSearchArray(test2Array,"search2.txt");
+
+       System.out.print("\nTest 2");
+       test2.displayData(20, "Data Array");
+       test2.displayHash(20);
+       System.out.print("\n\n");
+
+       for(int i=0;i<10;i++){
+           System.out.printf("Sequential search for %d found at index: %d. %d comparisons needed.%n",test2Array[i],test2.seqSearch(test2Array[i]),test2.compSeq);
+           System.out.printf("Binary search for %d found at index: %d. %d comparisons needed.%n",test2Array[i],test2.binSearch(test2Array[i],0,999),test2.compBin);
+           System.out.printf("Hash search for %d found at index: %d. %d comparisons needed.%n%n",test2Array[i],test2.hashSearch(test2Array[i]),test2.compHash);
+
+       }
+
+       System.out.println("Average comparisons for sequential search in this case is: " + (test2.compSeq /10));
+       System.out.println("Average comparisons for binary search in this case is: " + (test2.compBin /10));
+       System.out.println("Average comparisons for Hash search in this case is: " + (test2.compHash /10));
 
    }
 
